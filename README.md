@@ -20,5 +20,21 @@ bastion_IP = 35.210.88.112
 someinternalhost_IP = 10.132.0.3
 
 #HM 4
-testapp_IP = 35.198.167.169
+testapp_IP = 35.195.24.127
 testapp_port = 9292
+
+# Создание инстанса с запуском startup-script
+sh ./create.sh --name <instance_name>
+
+или
+```sh
+gcloud compute instances create reddit-app \
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --restart-on-failure \
+  --zone=europe-west1-d \
+  --metadata-from-file startup-script=./startup_script.sh
+```
