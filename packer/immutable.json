@@ -13,8 +13,8 @@
         {
             "type": "googlecompute",
             "project_id": "{{user `project_id`}}",
-            "image_name": "reddit-base-{{timestamp}}",
-            "image_family": "reddit-base",
+            "image_name": "reddit-full-{{timestamp}}",
+            "image_family": "reddit-full",
             "image_description": "{{user `image_description`}}",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "europe-west1-b",
@@ -23,7 +23,8 @@
             "disk_size": "{{user `disk_size`}}",
 			"disk_type": "{{user `disk_type`}}",
             "network": "{{user `network`}}",
-			"tags": "{{user `tags`}}"
+			"tags": "{{user `tags`}}",
+            "startup_script_file": "files/start.sh"
         }
     ],
     "provisioners": [
@@ -35,6 +36,11 @@
         {
             "type": "shell",
             "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "files/deploy.sh",
             "execute_command": "sudo {{.Path}}"
         }
     ]
