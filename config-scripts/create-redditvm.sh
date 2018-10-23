@@ -9,12 +9,11 @@ else
     exit
 fi
 
-gcloud compute instances create zxczxc \
+gcloud compute instances create $name \
   --boot-disk-size=10GB \
   --image-family=reddit-full \
   --image-project=infra-219521 \
   --machine-type=g1-small \
   --tags puma-server \
   --restart-on-failure \
-  --zone=europe-west1-b \
-  --metadata startup-script='cd ~/reddit && puma -d'
+  --zone=europe-west1-b
