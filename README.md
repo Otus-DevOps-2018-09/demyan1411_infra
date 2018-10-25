@@ -1,6 +1,8 @@
 # demyan1411_infra
 demyan1411 Infra repository
 
+git update-index --chmod=+x bach.sh
+
 # Доступ по ssh
 1) ssh -o ProxyCommand='ssh -W %h:%p User@35.210.88.112' User@10.132.0.3
 
