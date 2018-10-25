@@ -5,7 +5,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "app" {
-    name = "reddit-app2"
+    name = "reddit-app"
     machine_type = "g1-small"
     zone = "europe-west1-b"
     tags = ["reddit-app"]
@@ -41,37 +41,7 @@ resource "google_compute_instance" "app" {
     }
 
     provisioner "remote-exec" {
-        inline = [
-            "echo =====================================",
-            "cd /tmp && ls -lah",
-            "cat terraform_*",
-            "mount -o remount,exec /tmp",
-            "echo ====================================="
-        ]
-    }
-
-    # provisioner "file" {
-    #     source      = "files/deploy.sh"
-    #     destination = "/tmp/deploy.sh"
-    # }
-
-    # provisioner "remote-exec" {
-    #     inline = [
-    #         "chmod +x /tmp/deploy.sh",
-    #         "/tmp/deploy.sh",
-    #     ]
-    # }
-
-    provisioner "remote-exec" {
         script = "files/deploy.sh"
-
-        # connection {
-        #     type = "ssh"
-        #     user = "appuser"
-        #     agent = false
-        #     script_path = "./files"
-        #     private_key = "${file("~/.ssh/appuser")}"
-        # }
     }
 }
 
