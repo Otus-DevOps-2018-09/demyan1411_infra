@@ -22,8 +22,7 @@
             "disk_size": "{{user `disk_size`}}",
 			"disk_type": "{{user `disk_type`}}",
             "network": "{{user `network`}}",
-			"tags": "{{user `tags`}}",
-            "startup_script_file": "files/start.sh"
+			"tags": "{{user `tags`}}"
         }
     ],
     "provisioners": [
@@ -31,6 +30,20 @@
             "type": "shell",
             "script": "scripts/deploy.sh",
             "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "file",
+            "source": "files/puma.service",
+            "destination": "/tmp/puma.service"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "mv /tmp/puma.service /etc/systemd/system/puma.service",
+                "systemctl start puma.service",
+                "systemctl enable puma.service"
+            ],
+            "execute_command": "sudo {{.Vars}} {{.Path}}"
         }
     ]
 }

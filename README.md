@@ -63,5 +63,9 @@ packer build -var-file=variables.json immutable.json
 Запуск инстанса
 
 ```
+sh ../config-scripts/create-redditvm.sh --name [name]
+```
+или
+```
 gcloud compute instances create [name]   --boot-disk-size=10GB   --image=reddit-full-1540332681   --image- project=infra-219521   --machine-type=g1-small   --tags puma-server   --restart-on-failure   --zone=europe-west1-b
 ```

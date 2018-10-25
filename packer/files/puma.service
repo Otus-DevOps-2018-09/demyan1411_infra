@@ -1,13 +1,12 @@
 [Unit]
 Description=Puma HTTP Server
-After=network.target mongod.service
+After=network.target
 
 [Service]
 Type=simple
 User=appuser
 WorkingDirectory=/home/appuser/reddit
-ExecStart=/home/appuser/reddit/puma -b tcp://0.0.0.0:9292
-ExecStop=/home/appuser/reddit/pumactl -S
+ExecStart=/bin/bash -lc 'puma'
 Restart=always
 
 [Install]
