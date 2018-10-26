@@ -49,3 +49,23 @@ gcloud compute firewall-rules create default-puma-server \
   --source-ranges 0.0.0.0/0 \
   --target-tags puma-server
 ```
+
+# Packer
+
+В папке /packer созданы json конфиги с настройками пакера
+
+Запуск packer:
+```
+cd packer
+packer build -var-file=variables.json immutable.json
+```
+
+Запуск инстанса
+
+```
+sh ../config-scripts/create-redditvm.sh --name [name]
+```
+или
+```
+gcloud compute instances create [name]   --boot-disk-size=10GB   --image=reddit-full-1540332681   --image- project=infra-219521   --machine-type=g1-small   --tags puma-server   --restart-on-failure   --zone=europe-west1-b
+```
