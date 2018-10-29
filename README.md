@@ -71,3 +71,6 @@ sh ../config-scripts/create-redditvm.sh --name [name]
 ```
 gcloud compute instances create [name]   --boot-disk-size=10GB   --image=reddit-full-1540332681   --image- project=infra-219521   --machine-type=g1-small   --tags puma-server   --restart-on-failure   --zone=europe-west1-b
 ```
+
+# HM 5
+Создан конфиг terraform в нем создается инстанс VM, правило firewall, добавляются ssh ключи
