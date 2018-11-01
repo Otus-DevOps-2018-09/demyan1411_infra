@@ -4,11 +4,12 @@ provider "google" {
     region  = "${var.region}"
 }
 
-resource "google_compute_instance" "app" {
-    name         = "reddit-app"
+resource "google_compute_instance" "reddit-app-instance" {
+    name         = "reddit-app-instance-${count.index}"
     machine_type = "g1-small"
     zone         = "${var.zone}"
     tags         = ["reddit-app"]
+    count        = "${var.count_instances}"
 
     metadata {
         # ssh-keys = "appuser:${file("~/.ssh/appuser.pub")}"

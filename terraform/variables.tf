@@ -23,3 +23,8 @@ variable private_key_path {
 variable disk_image {
   description = "Disk image"
 }
+
+variable count_instances {
+  description = "number of for lb"
+  default     = "1"
+}
