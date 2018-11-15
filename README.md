@@ -1,6 +1,7 @@
 # demyan1411_infra
 demyan1411 Infra repository
 
+
 git update-index --chmod=+x bach.sh
 
 # Доступ по ssh
