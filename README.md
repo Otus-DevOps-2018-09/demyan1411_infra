@@ -97,3 +97,19 @@ gcloud compute instances create [name]   --boot-disk-size=10GB   --image=reddit-
 * Создан отдельный конфиг для создания двух бакетов
 * В stage и prod добавлены backend.tf для хранения .tfstate файлов в бакетах
 * При копировании конфигурационных файлов, terraform продолжает видеть state.
+
+# HM 8
+* Install pip
+* To install ansible run: `pip install -r requirements.txt`
+* test inventory and ssh: `ansible appserver -i ./inventory -m ping`
+* Test group ping `ansible app -m ping`
+* Test with module shell `ansible app -m shell -a 'ruby -v; bundler -v'`
+* Test mongod `ansible db -m service -a name=mongod`
+* Clone repository
+```
+ansible app -m git -a \
+    'repo=https://github.com/express42/reddit.git dest=/home/appuser/reddit'
+```
+* Command module `ansible app -m command -a 'rm -rf ~/reddit'`
+* run playbook `ansible-playbook clone.yml`
+* Create inventory.json test: `ansible all -i ./inventory.sh -m ping`
